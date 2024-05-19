@@ -18,3 +18,13 @@ package-windows:
     Get-Content -Path "$(which lovr)", "{{zip_path}}" -AsByteStream -Raw | Set-Content -Path "loverspades.exe" -AsByteStream
     New-Item -Path "{{build_directory}}" -ItemType Directory -Force | Out-Null
     Move-Item -Path "loverspades.*" -Destination "{{build_directory}}" -Force
+
+run:
+    just package
+    just run-{{os_family()}}
+    
+run-windows:
+    build/windows/loverspades.exe
+
+run-linux:
+    build/linux/loverspades
