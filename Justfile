@@ -15,7 +15,7 @@ package-linux:
 
 package-windows:
     7z a "{{zip_path}}" "{{source_directory / "*"}}"
-    Get-Content -Path "$(which lovr)", "{{zip_path}}" -AsByteStream -Raw | Set-Content -Path "loverspades.exe" -AsByteStream
+    Get-Content -Path "$((Get-Command lovr).Path)", "{{zip_path}}" -AsByteStream -Raw | Set-Content -Path "loverspades.exe" -AsByteStream
     New-Item -Path "{{build_directory}}" -ItemType Directory -Force | Out-Null
     Move-Item -Path "loverspades.*" -Destination "{{build_directory}}" -Force
 
