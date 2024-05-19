@@ -39,3 +39,8 @@ luac.out
 *.x86_64
 *.hex
 
+# VS Code related files
+.vscode/
+
+# LoverSpades related files
+build/
