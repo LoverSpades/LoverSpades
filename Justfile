@@ -6,6 +6,7 @@ export LOVR_PATH := "C:\\Program Files\\LOVR\\lovr.exe"
 current_directory := invocation_directory()
 source_directory := current_directory / "src"
 zip_path := current_directory / "loverspades.zip"
+build_directory := current_directory / "build" / os_family() / ""
 
 package:
     just package-{{os_family()}}
@@ -17,5 +18,5 @@ package-linux:
 package-windows:
     7z a "{{zip_path}}" "{{source_directory / "*"}}"
     Get-Content -Path "{{LOVR_PATH}}", "{{zip_path}}" -AsByteStream -Raw | Set-Content -Path "loverspades.exe" -AsByteStream
-    New-Item -Path "{{current_directory / "build" / os_family() / ""}}" -ItemType Directory -Force | Out-Null
-    Move-Item -Path "loverspades.*" -Destination "{{current_directory / "build" / os_family() / ""}}" -Force
+    New-Item -Path "{{build_directory}}" -ItemType Directory -Force | Out-Null
+    Move-Item -Path "loverspades.*" -Destination "{{build_directory}}" -Force
