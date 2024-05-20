@@ -19,10 +19,9 @@ package-windows:
     New-Item -Path "{{build_directory}}" -ItemType Directory -Force | Out-Null
     Move-Item -Path "loverspades.*" -Destination "{{build_directory}}" -Force
 
-run:
-    just package
+run: package
     just run-{{os_family()}}
-    
+
 run-windows:
     build/windows/loverspades.exe
 
