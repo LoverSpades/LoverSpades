@@ -4,10 +4,10 @@ set windows-shell := ["pwsh.exe", "-c"]
 current_directory := invocation_directory()
 source_directory := current_directory / "src"
 zip_path := current_directory / "loverspades.zip"
-build_directory := current_directory / "build" / os_family() / arch() / ""
+build_directory := current_directory / "build" / os() / arch() / ""
 
 package:
-    just package-{{os_family()}}
+    just package-{{os()}}
 
 package-linux:
     zip -9qr loverspades.zip {{source_directory / "*"}}
@@ -20,7 +20,7 @@ package-windows:
     Move-Item -Path "loverspades.*" -Destination "{{build_directory}}" -Force
 
 run: package
-    just run-{{os_family()}}
+    just run-{{os()}}
 
 run-windows:
     {{build_directory / "loverspades.exe"}}
