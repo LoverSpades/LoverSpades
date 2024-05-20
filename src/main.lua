@@ -1,6 +1,6 @@
-function lovr.load()
+lovr.mouse = require 'libs.mouse'
 
-end
+function lovr.load() end
 
 function lovr.update(dt)
 	if lovr.system.isKeyDown("w") then
