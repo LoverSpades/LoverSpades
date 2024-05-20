@@ -4,7 +4,7 @@ set windows-shell := ["pwsh.exe", "-c"]
 current_directory := invocation_directory()
 source_directory := current_directory / "src"
 zip_path := current_directory / "loverspades.zip"
-build_directory := current_directory / "build" / os_family() / ""
+build_directory := current_directory / "build" / os_family() / arch() / ""
 
 package:
     just package-{{os_family()}}
@@ -23,7 +23,7 @@ run: package
     just run-{{os_family()}}
 
 run-windows:
-    build/windows/loverspades.exe
+    {{build_directory / "loverspades.exe"}}
 
 run-linux:
-    build/linux/loverspades
+    {{build_directory / "loverspades"}}
