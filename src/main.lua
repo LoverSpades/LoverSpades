@@ -1,4 +1,5 @@
 lovr.mouse = require 'libs.mouse'
+local libmapvxl = require 'libmapvxl'
 
 function lovr.load() end
 
@@ -18,4 +19,6 @@ function lovr.draw(pass)
 
 	pass:setColor(0xff00ee, 255)
 	pass:cube(transform, "line")
+
+	local map = libmapvxl.new(100, 100, 100)
 end
